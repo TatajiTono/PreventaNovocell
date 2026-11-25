@@ -4,7 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promo Preventa 15% OFF - Módulos | Novocell</title>
+    <title>Preventa 15% OFF - Módulos | Novocell</title>
+    <meta name="description"
+        content="Reservá módulos con 15% OFF pagando por transferencia hasta el 28/11. Compra mínima $200.000 · Entrega 30/11 y 1/12.">
+    <meta name="theme-color" content="#09090b">
+
+    <!-- Favicon vectorial inline (N de Novocell) -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2309090b'/%3E%3Crect x='2' y='2' width='60' height='60' rx='14' fill='none' stroke='%23EF6A1F' stroke-opacity='0.35' stroke-width='2'/%3E%3Cpath fill='%23FFFFFF' d='M17 46V26a8 8 0 0 1 8-8h14a8 8 0 0 1 8 8v20h-6V26a2 2 0 0 0-2-2H25a2 2 0 0 0-2 2v20Z'/%3E%3Ccircle cx='49' cy='15' r='4' fill='%23EF6A1F'/%3E%3C/svg%3E">
+
+    <!-- Vista previa al compartir por WhatsApp y Redes (Open Graph) -->
+    <link rel="canonical" href="https://preventa-modulos-novocell.vercel.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://preventa-modulos-novocell.vercel.app/">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:site_name" content="Novocell">
+    <meta property="og:title" content="Preventa de Importación 15% OFF | Novocell">
+    <meta property="og:description"
+        content="Reservá tus módulos con 15% OFF por transferencia hasta el 28/11. Mínimo +$200.000 · Entrega 30/11 y 1/12.">
+    <meta property="og:image" content="https://preventa-modulos-novocell.vercel.app/og-preventa.png">
+    <meta property="og:image:secure_url" content="https://preventa-modulos-novocell.vercel.app/og-preventa.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Novocell - Preventa de Importación 15% OFF">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Preventa de Importación 15% OFF | Novocell">
+    <meta name="twitter:description"
+        content="Reservá tus módulos con 15% OFF por transferencia hasta el 28/11. Mínimo +$200.000 · Entrega 30/11 y 1/12.">
+    <meta name="twitter:image" content="https://preventa-modulos-novocell.vercel.app/og-preventa.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
@@ -3660,7 +3689,7 @@
             const totalUnits = cart.reduce((acc, item) => acc + item.quantity, 0);
             const normalTotal = cart.reduce((acc, item) => acc + item.normalPrice * item.quantity, 0);
 
-            let text = `👋 ¡Hola! Quiero reservar mi pedido de *PREVENTA 15% OFF* (Entrega semana del 30/11):\n\n`;
+            let text = `¡Hola! Quiero reservar mi pedido de *PREVENTA 15% OFF* (Entrega 30/11 y 1/12):\n\n`;
             text += `👤 *Cliente:* ${customerName} (DNI/CUIT: ${customerDni})\n`;
             text += `🚚 *Modalidad:* ${delivery}\n`;
             text += `💳 *Pago:* Transferencia bancaria\n\n`;
@@ -3668,14 +3697,14 @@
 
             cart.forEach(item => {
                 const subtotal = item.price * item.quantity;
-                text += `🔸 *${item.quantity}x* ${item.name} — $${formatAmount(subtotal)} ($${formatAmount(item.price)} c/u)\n`;
+                text += ` *  *${item.quantity}x* ${item.name} — $${formatAmount(subtotal)} ($${formatAmount(item.price)} c/u)\n`;
             });
 
             text += `\n🏷️ *Precio normal:* ~$${formatAmount(normalTotal)}~\n`;
             text += `💰 *Total Preventa (15% OFF):* $${formatAmount(total)}\n\n`;
             text += `Quedo a la espera del alias/CBU para transferir antes del 28/11. ¡Gracias!`;
 
-            const phone = '5493417544151';
+            const phone = '5493416054555';
             const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`;
             window.open(url, '_blank');
         }
