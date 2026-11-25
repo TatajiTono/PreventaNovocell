@@ -2290,8 +2290,8 @@
 
             <!-- Iconos de Redes Sociales -->
             <div class="flex items-center gap-4">
-                <!-- Reemplazar URL (Instagram) -->
-                <a href="#" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.instagram.com/novocell_importador_/?hl=es" target="_blank"
+                    rel="noopener noreferrer"
                     class="p-2 rounded-full bg-white/5 border border-white/10 text-zinc-400 hover:text-[#EF6A1F] hover:border-[#EF6A1F]/40 transition-colors"
                     aria-label="Instagram" title="Instagram">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -2302,8 +2302,7 @@
                     </svg>
                 </a>
 
-                <!-- Reemplazar URL (TikTok) -->
-                <a href="#" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.tiktok.com/@novocell_importador_" target="_blank" rel="noopener noreferrer"
                     class="p-2 rounded-full bg-white/5 border border-white/10 text-zinc-400 hover:text-[#EF6A1F] hover:border-[#EF6A1F]/40 transition-colors"
                     aria-label="TikTok" title="TikTok">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -2312,8 +2311,7 @@
                     </svg>
                 </a>
 
-                <!-- Reemplazar URL (Tienda Online) -->
-                <a href="#" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.novocell.com.ar/" target="_blank" rel="noopener noreferrer"
                     class="p-2 rounded-full bg-white/5 border border-white/10 text-zinc-400 hover:text-[#EF6A1F] hover:border-[#EF6A1F]/40 transition-colors"
                     aria-label="Tienda Online" title="Tienda Online">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -2605,8 +2603,7 @@
             <!-- Redirección a tienda online (solo visible cuando 0 < total < 200000) -->
             <div id="belowMinStoreLink" class="hidden mt-2.5 text-center text-xs text-zinc-500 leading-snug">
                 <span>¿Necesitás menos cantidad? </span>
-                <!-- Reemplazar con URL de la tienda online -->
-                <a href="#" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.novocell.com.ar/" target="_blank" rel="noopener noreferrer"
                     class="inline-flex items-center gap-1 font-semibold text-zinc-900 hover:text-[#EF6A1F] underline underline-offset-2 transition-colors">
                     <span>Comprá stock inmediato en nuestra tienda</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24"
@@ -2903,7 +2900,7 @@
             if (!inputEl) return;
             inputEl.classList.toggle('border-red-500', hasError);
             inputEl.classList.toggle('ring-2', hasError);
-            inputEl.classList.toggle('ring-red-200', hasError);
+            inputEl.classList.toggle('ring-red-500/20', hasError);
             inputEl.classList.toggle('border-zinc-200', !hasError);
         }
 
@@ -3638,20 +3635,24 @@
             }
 
             const customerName = customerNameInput.value.trim();
-            if (!customerName) {
-                setFieldError(customerNameInput, true);
-                showCheckoutError('Completá tu Nombre y Apellido o Local para continuar.');
-                customerNameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                customerNameInput.focus({ preventScroll: true });
-                return;
-            }
-
             const customerDni = customerDniInput.value.trim();
-            if (!customerDni) {
-                setFieldError(customerDniInput, true);
-                showCheckoutError('Completá tu DNI o CUIT para la facturación.');
-                customerDniInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                customerDniInput.focus({ preventScroll: true });
+
+            if (!customerName || !customerDni) {
+                if (!customerName) setFieldError(customerNameInput, true);
+                if (!customerDni) setFieldError(customerDniInput, true);
+
+                const errorMsg = (!customerName && !customerDni)
+                    ? 'Completá tu nombre y DNI/CUIT para reservar.'
+                    : (!customerName
+                        ? 'Completá tu Nombre y Apellido o Local para reservar.'
+                        : 'Completá tu DNI o CUIT para reservar.');
+                showCheckoutError(errorMsg);
+
+                const missingInput = !customerName ? customerNameInput : customerDniInput;
+                missingInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (window.innerWidth >= 768) {
+                    missingInput.focus({ preventScroll: true });
+                }
                 return;
             }
 
