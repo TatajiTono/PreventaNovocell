@@ -166,7 +166,7 @@
                     </div>
                     <p
                         class="text-[11px] sm:text-xs md:text-sm font-bold text-zinc-900 mt-1 leading-tight tabular-nums">
-                        Transf. hasta 28/11</p>
+                        Transferencia hasta 28/11</p>
                 </div>
 
                 <div
@@ -184,7 +184,8 @@
                         <span
                             class="text-[10px] md:text-[11px] font-medium text-zinc-500 uppercase tracking-tight sm:tracking-wider truncate">Entrega</span>
                     </div>
-                    <p class="text-[11px] sm:text-xs md:text-sm font-bold text-zinc-900 mt-1 leading-tight tabular-nums">
+                    <p
+                        class="text-[11px] sm:text-xs md:text-sm font-bold text-zinc-900 mt-1 leading-tight tabular-nums">
                         30/11 y 1/12</p>
                 </div>
             </div>
@@ -2432,8 +2433,6 @@
                 <div>
                     <div class="flex items-center justify-between gap-2">
                         <span class="text-xs font-bold text-zinc-800">Modelos más solicitados</span>
-                        <span id="upsellMissingText"
-                            class="text-xs font-semibold text-[#EF6A1F] tabular-nums whitespace-nowrap"></span>
                     </div>
                     <div class="flex items-center justify-between gap-2 mt-0.5">
                         <p class="text-[11px] text-zinc-500 leading-snug">Sumá repuestos de alta rotación para alcanzar
@@ -2473,8 +2472,7 @@
                         Ver todas &rarr;
                     </button>
                 </div>
-                <div id="cartBrandShortcutsList"
-                    class="flex flex-nowrap overflow-x-auto gap-1.5 pb-1 no-scrollbar">
+                <div id="cartBrandShortcutsList" class="flex flex-nowrap overflow-x-auto gap-1.5 pb-1 no-scrollbar">
                     <button type="button" data-shortcut-brand="Samsung"
                         class="shrink-0 px-3 py-1.5 rounded-full bg-white border border-zinc-200 hover:border-[#EF6A1F] hover:text-[#EF6A1F] text-zinc-700 text-xs font-medium transition-colors">Samsung</button>
                     <button type="button" data-shortcut-brand="Motorola"
@@ -3330,7 +3328,6 @@
         function renderUpsellSuggestions(total) {
             const container = document.getElementById('upsellContainer');
             const listEl = document.getElementById('upsellList');
-            const missingEl = document.getElementById('upsellMissingText');
             if (!container || !listEl) return;
 
             if (cart.length === 0 || total >= MIN_ORDER_AMOUNT) {
@@ -3345,10 +3342,6 @@
                 container.classList.add('hidden');
                 listEl.innerHTML = '';
                 return;
-            }
-
-            if (missingEl) {
-                missingEl.textContent = `Faltan ${formatCurrency(missing)}`;
             }
 
             listEl.innerHTML = suggestions.map(({ item, qty }) => {
@@ -3508,7 +3501,7 @@
 
             if (cartItemsHeading) cartItemsHeading.classList.remove('hidden');
             if (cartBrandShortcuts) cartBrandShortcuts.classList.remove('hidden');
-            if (cartCustomerCard) cartCustomerCard.classList.remove('hidden');
+            if (cartCustomerCard) cartCustomerCard.classList.toggle('hidden', total < MIN_ORDER_AMOUNT);
             if (cartFooter) cartFooter.classList.remove('hidden');
             if (stickyCartBar) stickyCartBar.classList.remove('hidden');
             if (stickyUnitsCount) stickyUnitsCount.textContent = `${totalUnits} ${totalUnits === 1 ? 'unidad' : 'unidades'}`;
